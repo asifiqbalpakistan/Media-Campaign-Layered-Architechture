@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title - OMG-Assessment</title>
+    <link href="~/css/coreui-icons.min.css" rel="stylesheet" />
+    <link href="~/css/dataTables.bootstrap4.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/flag-icon.min.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/pace.min.css" rel="stylesheet" />
+    <link href="~/css/select2.min.css" rel="stylesheet" />
+    <link href="~/css/simple-line-icons.css" rel="stylesheet" />
+    <link href="~/css/sweetalert2.min.css" rel="stylesheet" />
+
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/js/jquery.dataTables.js"></script>
+    <script src="~/js/dataTables.bootstrap4.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/coreui.min.js"></script>
+    <script src="~/js/custom-tooltips.min.js"></script>
+    <script src="~/js/jszip.min.js"></script>
+
+
+
+
+
+    <script src="~/js/perfect-scrollbar.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/select2.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/sweetalert2.min.js"></script>
+</head>
+<body class="app header-fixed sidebar-fixed aside-menu-fixed">
+    <div id="cover-spin">
+        <div class="loader">Loading...</div>
+    </div>
+
+    <header class="app-header navbar">
+        <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+            <img class="navbar-brand-full" src="~/Images/Logo.jpg" width="90" height="50">
+            <img class="navbar-brand-minimized" src="~/Images/Logo.jpg" width="90" height="50">
+        </a>
+        <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul class="nav navbar-nav ml-auto">
+            <partial name="_LoginPartial" />
+        </ul>
+    </header>
+
+    <div class="app-body">
+        <div class="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="nav">
+                    @if (User.IsInRole("Manager") || User.IsInRole("Planner"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "Campaign")">
+                                <i class="nav-icon icon-puzzle"></i> Campaign
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("UserList", "Account")">
+                                <i class="nav-icon icon-user"></i> Users
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Reports", "Campaign")">
+                                <i class="nav-icon icon-settings"></i> Reports
+                            </a>
+                        </li>
+                    }
+                    else if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("UserList", "Account")">
+                                <i class="nav-icon icon-user"></i> Users
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("ClientList", "Account")">
+                                <i class="nav-icon icon-user"></i> Clients
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("ChannelsList", "Home")">
+                                <i class="nav-icon icon-settings"></i>  Channels
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("SupplierList", "Home")">
+                                <i class="nav-icon icon-settings"></i> Suppliers
+                            </a>
+                        </li>
+                    }
+                    else if (User.IsInRole("Client"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Reports", "Campaign")">
+                                <i class="nav-icon icon-settings"></i> Reports
+                            </a>
+                        </li>
+                    }
+
+                </ul>
+            </nav>
+            <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+        </div>
+        <main class="main">
+            <div class="container-fluid p-t-40">
+                <div id="ui-view">
+                    @RenderBody()
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="app-footer">
+        <div class="ml-auto">
+            <a href="https://www.omnicommediagroup.com/">Powered By OMG-Assessment</a>
+            <span>© @DateTime.Now.Year All rights reserved.</span>
+        </div>
+    </footer>
+
+
+    @RenderSection("Scripts", required: false)
+    <script type="text/javascript">
+
+        $(".form-horizontal").submit(function (e) {
+            $("#cover-spin").show();
+        });
+
+        $(document).ready(function () {
+            $('.datatable').DataTable({
+                "ordering": false, "language": { "emptyTable": "No Record Found" }, dom: 'Bfrtip', buttons: [{
+                    extend: 'excelHtml5',
+                    autoFilter: true,
+                    sheetName: 'Exported data',
+                }]
+            });
+            $('.datatable').attr('style', 'border-collapse: collapse !important');
+            $('.select2-multiple').select2({
+                theme: 'bootstrap',
+                tags: true
+            });
+            $('.select2-single').select2({
+                theme: 'bootstrap'
+            });
+
+        });
+    </script>
+</body>
+</html>
+@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - OMG_Annalect_Assessment</title>
+
+        <environment include="Development">
+            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+            <link rel="stylesheet" href="~/css/site.css" />
+        </environment>
+        <environment exclude="Development">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+                  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+                  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+            <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        </environment>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">OMG_Annalect_Assessment</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+
+        <partial name="_CookieConsentPartial" />
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; 2019 - OMG_Annalect_Assessment</p>
+            </footer>
+        </div>
+
+        <environment include="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+        </environment>
+        <environment exclude="Development">
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+            </script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                    crossorigin="anonymous"
+                    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+            </script>
+            <script src="~/js/site.min.js" asp-append-version="true"></script>
+        </environment>
+
+        @RenderSection("Scripts", required: false)
+    </body>
+    </html>*@

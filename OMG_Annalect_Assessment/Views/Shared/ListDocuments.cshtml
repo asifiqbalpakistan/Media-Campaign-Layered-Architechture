@@ -1,0 +1,48 @@
+﻿@model IEnumerable<OMG_Annalect_DomainModels.DocumentModel>
+
+<div class="card">
+    <div class="card-header">
+        <strong>Documents</strong>
+        <div class="card-header-actions">
+            <a class="btn btn-info" href="javascript:void(0)" data-toggle="modal" data-target="#primaryModal">
+                <i class="fa fa-file"></i> Upload New
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table id="tblDocs" class="table table-responsive-sm">
+            <thead>
+                <tr>
+                    <th>Document</th>
+                    <th>Document Type</th>
+                    <th>Added By</th>
+                    <th class="no-sort"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in Model)
+                {
+                    <tr>
+
+                        <td>
+
+                            <a href="@Url.Action("DownloadFile", "Campaign", new { id = record.DocumentId })" target="_blank">@record.DocumentName</a>
+
+                        </td>
+                        <td>@record.DocumentTypeName</td>
+                        <td>@record.AddedBy</td>
+                        <td>
+                            @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                            {
+                                <a class="btn btn-brand btn-sm btn-html5" href="javascript:void(0)" onclick="DeleteDoc('@record.DocumentId', 'Doc')">
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
+
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

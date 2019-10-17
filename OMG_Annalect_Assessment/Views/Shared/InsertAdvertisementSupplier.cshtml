@@ -1,0 +1,74 @@
+﻿@model OMG_Annalect_DomainModels.DomainModel.AdvertisementSupplierCreateModel
+
+<div class="modal fade" id="adsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-primary" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">New Advertisment</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("InsertAdvertisement", "Campaign", FormMethod.Post, new { @id = "AdForm" }))
+            {
+                @Html.HiddenFor(m => m.AdvertisementSupplierId)
+                @Html.HiddenFor(m => m.CampaignId)
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="modal-body">
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.Name, new { @class = "col-md-3 col-form-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Name, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-3">Channel</label>
+                        <div class="col-md-9">
+                            @Html.DropDownListFor(m => m.ChannelId, (SelectList)Model.ChannelList, "Select Channel", new { @class = "form-control js-change" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-3">Supplier</label>
+
+                        <div id="DivAddSupplier" class="col-md-9">
+                            @*@Html.DropDownListFor(m => m.SuppplierId, (SelectList)Model.SupplierList, "Select Supplier", new { @class = "form-control" })*@
+                            <partial name="AddSupplier" model=Model />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-3">Budget</label>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Budget, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-3">Start Date</label>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.StartDateTime, htmlAttributes: new { @class = "form-control", type = "date" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-3">End Date</label>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.EndDateTime, htmlAttributes: new { @class = "form-control", type = "date" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button id="Add-Advertisement" class="btn btn-primary" type="button">Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+

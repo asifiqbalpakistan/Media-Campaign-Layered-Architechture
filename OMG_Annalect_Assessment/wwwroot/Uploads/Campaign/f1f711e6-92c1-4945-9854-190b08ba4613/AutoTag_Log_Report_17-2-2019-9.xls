@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
+<ss:Styles>
+<ss:Style ss:ID="1">
+<ss:Font ss:Bold="1"/>
+</ss:Style>
+</ss:Styles>
+<ss:Worksheet ss:Name="ENDB_Report">
+<ss:Table>
+<ss:Column ss:Width="100"/>
+<ss:Column ss:Width="100"/>
+<ss:Column ss:Width="189"/>
+<ss:Column ss:Width="100"/>
+<ss:Column ss:Width="70"/>
+<ss:Column ss:Width="204"/>
+<ss:Column ss:Width="100"/>
+<ss:Row ss:StyleID="1">
+<ss:Cell>
+<ss:Data ss:Type="String">Id</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">AccountId</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">TifImagePath</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">CreatedBy</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">CreatedDate</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">MQTimesTag</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">QCTimesTag</ss:Data>
+</ss:Cell>
+</ss:Row>
+<ss:Row ss:Height ="22">
+<ss:Cell>
+<ss:Data ss:Type="String">1</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">5534</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">D:\TestFiles\02-11-2019\BPM_AM_98765007_6789007_AOD-OTH_02-09-2018_1_01_0.TIF</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">asif</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">2/11/2019 5:21:59 PM</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">2</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">0</ss:Data>
+</ss:Cell>
+</ss:Row>
+<ss:Row ss:Height ="22">
+<ss:Cell>
+<ss:Data ss:Type="String">2</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">5534</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">D:\TestFiles\02-11-2019\BPM_AM_98765007_6789007_AOD-OTH_02-09-2018_1_01_1.TIF</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">asif</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">2/11/2019 5:25:00 PM</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">1</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">0</ss:Data>
+</ss:Cell>
+</ss:Row>
+<ss:Row ss:Height ="22">
+<ss:Cell>
+<ss:Data ss:Type="String">3</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">5534</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">D:\TestFiles\02-11-2019\BPM_AM_98765007_6789007_AOD-OTH_02-09-2018_1_01_5.TIF</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">asif</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">2/11/2019 5:27:52 PM</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">2</ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String">0</ss:Data>
+</ss:Cell>
+</ss:Row>
+<ss:Row ss:Height ="22">
+<ss:Cell>
+<ss:Data ss:Type="String"></ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String"></ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String"></ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String"></ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String"></ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String"></ss:Data>
+</ss:Cell>
+<ss:Cell>
+<ss:Data ss:Type="String"></ss:Data>
+</ss:Cell>
+</ss:Row>
+</ss:Table>
+</ss:Worksheet>
+</ss:Workbook>

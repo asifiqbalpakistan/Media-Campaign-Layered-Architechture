@@ -1,0 +1,72 @@
+﻿@model OMG_Annalect_DomainModels.CampaignModel
+@{
+    ViewBag.Title = "Update Campaign";
+}
+    @Html.HiddenFor(t=>t.CampaignModelId)
+    <div class="card">
+        <div class="card-header">
+            <strong>@ViewBag.Title</strong>
+        </div>
+        <div id="Lead-Area">
+
+            <div class="card-body">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Name, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.ClientId, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(m => m.ClientId, (SelectList)Model.ClientList, "Select Client", new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Country, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(m => m.Country, (SelectList)Model.CountryList, "Select Country", new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.StartDateTime, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(m => m.StartDateTime, new { htmlAttributes = new { @class = "form-control" } })
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.EndDateTime, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(m => m.EndDateTime, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Budget, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(m => m.Budget, new { @class = "form-control", type = "number" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Action, new { @class = "col-md-3 col-form-label" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(m => m.Action, (SelectList)Model.ActionList, "Select Action", new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <button id="btnsave" class="btn btn-md btn-primary" type="button">
+                <i class="fa fa-dot-circle-o"></i> Update
+            </button>
+        </div>
+    </div>
+    
+<script>
+    
+</script>

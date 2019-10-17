@@ -1,0 +1,16 @@
+D:\OMG_Annalect_Assessment\OMG_Annalect_BL_Core\bin\Debug\netstandard2.0\OMG_Annalect_BL_Core.deps.json
+D:\OMG_Annalect_Assessment\OMG_Annalect_BL_Core\bin\Debug\netstandard2.0\OMG_Annalect_BL_Core.dll
+D:\OMG_Annalect_Assessment\OMG_Annalect_BL_Core\bin\Debug\netstandard2.0\OMG_Annalect_BL_Core.pdb
+D:\OMG_Annalect_Assessment\OMG_Annalect_BL_Core\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Mvc.ViewFeatures.dll
+D:\OMG_Annalect_Assessment\OMG_Annalect_BL_Core\bin\Debug\netstandard2.0\OMG_Annalect_DAL_Core.dll
+D:\OMG_Annalect_Assessment\OMG_Annalect_BL_Core\bin\Debug\netstandard2.0\OMG_Annalect_DomainModels.dll
+D:\OMG_Annalect_Assessment\OMG_Annalect_BL_Core\bin\Debug\netstandard2.0\OMG_Annalect_DAL_Core.pdb
+D:\OMG_Annalect_Assessment\OMG_Annalect_BL_Core\bin\Debug\netstandard2.0\OMG_Annalect_DomainModels.pdb
+D:\OMG_Annalect_Assessment\OMG_Annalect_BL_Core\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Mvc.ViewFeatures.xml
+D:\OMG_Annalect_Assessment\OMG_Annalect_BL_Core\obj\Debug\netstandard2.0\OMG_Annalect_BL_Core.csprojAssemblyReference.cache
+D:\OMG_Annalect_Assessment\OMG_Annalect_BL_Core\obj\Debug\netstandard2.0\OMG_Annalect_BL_Core.csproj.CoreCompileInputs.cache
+D:\OMG_Annalect_Assessment\OMG_Annalect_BL_Core\obj\Debug\netstandard2.0\OMG_Annalect_BL_Core.AssemblyInfoInputs.cache
+D:\OMG_Annalect_Assessment\OMG_Annalect_BL_Core\obj\Debug\netstandard2.0\OMG_Annalect_BL_Core.AssemblyInfo.cs
+D:\OMG_Annalect_Assessment\OMG_Annalect_BL_Core\obj\Debug\netstandard2.0\OMG_Annalect_BL_Core.csproj.CopyComplete
+D:\OMG_Annalect_Assessment\OMG_Annalect_BL_Core\obj\Debug\netstandard2.0\OMG_Annalect_BL_Core.dll
+D:\OMG_Annalect_Assessment\OMG_Annalect_BL_Core\obj\Debug\netstandard2.0\OMG_Annalect_BL_Core.pdb

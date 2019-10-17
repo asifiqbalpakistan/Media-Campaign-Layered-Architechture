@@ -1,0 +1,38 @@
+﻿@model OMG_Annalect_DomainModels.DocumentModel
+
+<div class="modal fade" id="primaryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-primary" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Upload Documents</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("UploadDocument", "Campaign", FormMethod.Post, new { @id = "DocumentForm" }))
+            {
+                @Html.HiddenFor(m => m.guid)
+                @Html.HiddenFor(m => m.CampaignId)
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="modal-body">
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.DocumentTypeId, new { @class = "col-md-3 col-form-label" })
+                        <div class="col-md-9">
+                            @Html.DropDownListFor(m => m.DocumentTypeId, (SelectList)Model.DocumentTypes, "Select Channel", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Upload File</label><br />
+                        <input id="documentFile" type="file" name="documentFile">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button id="Upload-Doc" class="btn btn-primary" type="button">Upload</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

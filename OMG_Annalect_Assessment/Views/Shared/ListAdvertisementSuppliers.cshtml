@@ -1,0 +1,56 @@
+﻿<OMG_Annalect_DomainModels.DomainModel.AdvertisementSupplierModel>
+
+<div class="card">
+    <div class="card-header">
+        <strong>Advertisements</strong>
+        <div class="card-header-actions">
+            <a class="btn btn-info" href="javascript:void(0)" data-toggle="modal" data-target="#adsModal">
+                <i class="fa fa-file"></i> New Advertisement
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table id="tblDocs" class="table table-responsive-sm">
+            <thead>
+                <tr>
+                    <th>Advertisement Name</th>
+                    <th>Channel</th>
+                    <th>Supplier Name</th>
+                    <th>Budget</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th class="no-sort"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in Model)
+                {
+                <tr>
+                    <td>@record.Name</td>
+                    <td>@record.ChannelName</td>
+                    <td>@record.SupplierName</td>
+                    <td>@record.Budget</td>
+                    <td>@record.StartDateTime</td>
+                    <td>@record.EndDateTime</td>
+                    <td>
+                        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                        {
+                            <a class="btn btn-brand btn-sm btn-html5" href="javascript:void(0)" onclick="DeleteAdvertisement('@record.AdvertisementSupplierId')">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
+
+                        }
+                        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                        {
+                            <a class="btn btn-brand btn-sm btn-html5" title="Push Advertisement Data">
+                                <i class="fa fa-dashboard"></i>
+                            </a>
+
+                        }
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

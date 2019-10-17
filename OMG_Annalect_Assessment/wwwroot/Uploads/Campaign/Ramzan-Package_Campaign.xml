@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Campaign>
+  <Campaign_Name>Ramzan-Package</Campaign_Name>
+  <Country>United Arab Emirates</Country>
+  <Budget>1500</Budget>
+  <Campaign_Start_Date>5/1/2019</Campaign_Start_Date>
+  <Campaign_End_Date>5/31/2019</Campaign_End_Date>
+  <Advertisement_Details>
+    <Advertisement>
+      <Addvertisement_Name>TestChannel</Addvertisement_Name>
+      <Channel>Social</Channel>
+      <Supplier>Facebook</Supplier>
+      <Ad_Budget>234</Ad_Budget>
+      <Start_Date>5/3/2019</Start_Date>
+      <End_Date>5/3/2019</End_Date>
+    </Advertisement>
+    <Advertisement>
+      <Addvertisement_Name>Test Suppplier</Addvertisement_Name>
+      <Channel>OOH</Channel>
+      <Supplier>Twitter</Supplier>
+      <Ad_Budget>345</Ad_Budget>
+      <Start_Date>5/8/2019</Start_Date>
+      <End_Date>5/8/2019</End_Date>
+    </Advertisement>
+  </Advertisement_Details>
+</Campaign>

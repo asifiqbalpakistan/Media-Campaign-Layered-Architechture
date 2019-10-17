@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Campaign>
+  <Campaign_Name>campaign2</Campaign_Name>
+  <Country>Pakistan</Country>
+  <Budget>20000</Budget>
+  <Campaign_Start_Date>5/2/2019</Campaign_Start_Date>
+  <Campaign_End_Date>5/9/2019</Campaign_End_Date>
+  <Advertisement_Details>
+    <Advertisement>
+      <Addvertisement_Name>asdasd</Addvertisement_Name>
+      <Channel>Social</Channel>
+      <Supplier>Facebook</Supplier>
+      <Ad_Budget>342</Ad_Budget>
+      <Start_Date>5/3/2019</Start_Date>
+      <End_Date>5/3/2019</End_Date>
+    </Advertisement>
+    <Advertisement>
+      <Addvertisement_Name>34345</Addvertisement_Name>
+      <Channel>Offline</Channel>
+      <Supplier>Facebook</Supplier>
+      <Ad_Budget>445</Ad_Budget>
+      <Start_Date>5/4/2019</Start_Date>
+      <End_Date>5/4/2019</End_Date>
+    </Advertisement>
+  </Advertisement_Details>
+</Campaign>

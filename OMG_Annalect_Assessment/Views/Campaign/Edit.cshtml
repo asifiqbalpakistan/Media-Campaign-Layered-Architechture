@@ -1,0 +1,351 @@
+﻿@model OMG_Annalect_DomainModels.CampaignEditModel
+
+@{
+    ViewBag.Title = "Create Campaign";
+}
+
+
+<div>
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-6">
+                @using (Html.BeginForm("UpdateCampaign", "Campaign", FormMethod.Post, new { @id = "CampaignForm" }))
+                {
+                <partial name="UpdateCampaign" model=Model.CampaignModel />
+                }
+            </div>
+            <div class="col-md-6">
+                <div id="Document-Area">
+                    <partial name="ListDocuments" model=Model.DocumentsList />
+                </div>
+                <div id="Contact-Area">
+                    <partial name="ListAdvertisementSuppliers" model=Model.CampaignModel.Advertisements />
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<partial name="InsertDocument" model=Model.Document />
+<partial name="InsertAdvertisementSupplier" model=Model.AdsCreateModel />
+
+<script src="~/Scripts/select2.min.js"></script>
+<script type="text/javascript">
+
+     $(function () {
+        var url = window.location.search;
+        if (url.match("adname")!=null && url.match("adname").length > 0) {
+            Swal.fire({
+                type: 'success',
+                title: 'Created!',
+                text: getUrlVars()["adname"] +' Created Successfully.'
+            }).then((result) => {
+                if (result.value) {
+                    url.match("adname") = "";
+                    location.reload();
+                    getUrlVars()["adname"] = "";
+                }
+            });
+         }
+          if (url.match("adv")!=null && url.match("adv").length > 0) {
+            Swal.fire({
+                type: 'success',
+                title: 'Created!',
+                text: getUrlVars()["adv"] +' Created Successfully.'
+            }).then((result) => {
+                if (result.value) {
+                    url.match("adv") = "";
+                    location.reload();
+                    getUrlVars()["adv"] = "";
+                }
+            });
+         }
+         if (url.match("advBudget") != null && url.match("advBudget").length > 0) {
+             console.log(getUrlVars()["advBudget"](1))
+            Swal.fire({
+                type: 'Error',
+                title: 'Validation!',
+                text: getUrlVars()["advBudget"](1)
+
+            }).then((result) => {
+                if (result.value) {
+                    url.match("advBudget") = "";
+                    location.reload();
+                    getUrlVars()["advBudget"] = "";
+                }
+            });
+        }
+    });
+
+
+        $('#btnsave').click(function () {
+
+            var frm = $("#CampaignForm");
+            var data = new FormData($("#CampaignForm")[0]);
+
+            $.ajax({
+                url: '@Url.Action("UpdateCampaign", "Campaign")',
+                type: "POST",
+                processData: false,
+                data: data,
+                dataType: 'json',
+                contentType: false,
+                success: function (data) {
+                    if (data.success) {
+                        window.location.href = "/Campaign/index?update="+data.campaign;
+                    }
+
+                },
+                error: function (data) {
+                    $("#Lead-Area").html(data.responseText);
+                    $('html, body').animate({ scrollTop: 0 }, 'fast');
+                }
+            });
+            return false;
+        });
+
+        $('#Upload-Doc').click(function () {
+
+            var frm = $("#DocumentForm");
+            var data = new FormData($("#DocumentForm")[0]);
+
+            $.ajax({
+                url: '@Url.Action("UploadDocument", "Campaign")',
+                type: "POST",
+                processData: false,
+                data: data,
+                dataType: "json",
+                contentType: false,
+                success: function (data) {
+                    $('#primaryModal').modal('hide');
+                    if (data.success) {
+                        Swal.fire({
+                            type: 'success',
+                            title: 'Uploaded Successfully',
+                            text: 'Document Uploaded Successfully'
+                        }).then((result) => {
+                                if (result.value) {
+                                    location.reload();
+                                }
+                            });
+                    } else {
+                        Swal.fire({
+                            type: 'error',
+                            title: 'Some error occured',
+                            text: 'Please try again'
+                        });
+                    }
+                },
+                error: function (data) {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Some error occured',
+                        text: 'Please try again'
+                    });
+                }
+            });
+            return false;
+        });
+
+        $('#primaryModal').on('hidden.bs.modal', function (e) {
+            $('#documentFile').val('');
+            $("#DocumentTypeID").val($("#DocumentTypeID option:first").val());
+        });
+
+        $('#adsModal').on('hidden.bs.modal', function (e) {
+
+        });
+
+        $('#Add-Advertisement').click(function () {
+            var campaignId = '@Model.CampaignModel.CampaignModelId';
+            var frm = $("#AdForm");
+            var data = new FormData($("#AdForm")[0]);
+            $.ajax({
+                url: '@Url.Action("InsertAdvertisement", "Campaign")',
+                type: "POST",
+                processData: false,
+                data: data,
+                dataType: 'json',
+                contentType: false,
+                success: function (data) {
+                    $('#adsModal').modal("hide");
+                    if (data.success) {
+                        Swal.fire({
+                            type: 'success',
+                            title: 'Saved Successfully',
+                            text: 'Advertisement Saved Successfully'
+                        }).then((result) => {
+                                if (result.value) {
+                                    location.reload();
+                                }
+                            });
+                    } else {
+                        Swal.fire({
+                            type: 'error',
+                            title: 'Validation Failed',
+                            text: data.title
+                        });
+
+                    }
+                },
+                error: function (data) {
+                    $('#adsModal').modal("hide");
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Some error occured',
+                        text: 'Please try again'
+                    });
+                }
+            });
+            return false;
+        });
+
+
+        function DeleteDoc(id, type) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $("#cover-spin").show();
+                    $.ajax({
+                        url: '@Url.Action("DeleteDocument", "Campaign")',
+                        type: "POST",
+                        data: { "id": id },
+                        dataType: "json",
+                        contentType: 'application/x-www-form-urlencoded',
+                        success: function (data, textStatus, jQxhr) {
+                            $("#cover-spin").hide();
+                            Swal.fire({
+                                type: 'success',
+                                title: 'Deleted!',
+                                text: 'Deleted Successfully.'
+                            }).then((result) => {
+                                if (result.value) {
+                                    location.reload();
+                                }
+                            });
+
+                        },
+                        error: function (data) {
+                            $("#cover-spin").hide();
+                            Swal.fire({
+                                type: 'error',
+                                title: 'Some error occured',
+                                text: 'Please try again'
+                            });
+                        }
+                    });
+                }
+            });
+            return false;
+        }
+
+        $('#emailModal').on('hidden.bs.modal', function (e) {
+            $('#ContactName').val('');
+            $('#ContactEmail').val('');
+        });
+
+        $('#Insert-Channel').click(function () {
+
+            var frm = $("#ChannelForm");
+            var data = new FormData($("#ChannelForm")[0]);
+
+            $.ajax({
+                url: '@Url.Action("AddCampaignChannel", "Campaign")',
+                type: "POST",
+                processData: false,
+                data: data,
+                dataType: "html",
+                contentType: false,
+                success: function (data) {
+                    $("#tbl-Channel tbody").html(data);
+                    $('#emailModal').modal('toggle');
+                },
+                error: function (data) {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Some error occured',
+                        text: 'Please try again'
+                    });
+                }
+            });
+            return false;
+        });
+
+    function DeleteAdvertisement(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $("#cover-spin").show();
+                    $.ajax({
+                        url: '@Url.Action("DeleteAdvertisement", "Campaign")',
+                        type: 'post',
+                        contentType: 'application/x-www-form-urlencoded',
+                        data: { "id": id },
+                        dataType: 'json',
+                        success: function (data, textStatus, jQxhr) {
+                            $("#cover-spin").hide();
+                            Swal.fire({
+                                type: 'success',
+                                title: 'Deleted!',
+                                text: 'Deleted Successfully.'
+                            }).then((result) => {
+                                if (result.value) {
+                                    location.reload();
+                                }
+                            });
+
+                        },
+                        error: function (jqXhr, textStatus, errorThrown) {
+                            $("#cover-spin").hide();
+                            Swal.fire({
+                                type: 'error',
+                                title: 'Some error occured',
+                                text: 'Please try again'
+                            });
+                        }
+                    });
+
+                }
+            })
+    }
+     $('.js-change').change(function () {
+         var id = $(".js-change").children("option:selected").val();
+         $.ajax({
+             url: '@Url.Action("AddSupplier", "Campaign")',
+             type: "POST",
+              data: { "id": id },
+             dataType: "html",
+               
+                success: function (data) {
+                    $("#DivAddSupplier").html(data);
+                },
+             error: function (data) {
+                 
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Some error occured',
+                        text: 'Please try again'
+                    });
+                }
+            });
+            return false;
+        });
+   
+
+</script>
+

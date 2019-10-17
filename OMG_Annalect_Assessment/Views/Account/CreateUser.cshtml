@@ -1,0 +1,97 @@
+﻿@model OMG_Annalect_DomainModels.RegisterViewModel
+
+@{
+    ViewBag.Title = "Create User";
+}
+@using Microsoft.AspNetCore.Identity
+@using OMG_Annalect_DAL_Core.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<div>
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                @using (Html.BeginForm("CreateUser", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                   
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>Create New User</strong>
+                            </div>
+                            <div class="card-body">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary("", new { @class = "text-danger" })
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.FirstName, new { @class = "col-md-3 col-form-label" })
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.LastName, new { @class = "col-md-3 col-form-label" })
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Email, new { @class = "col-md-3 col-form-label" })
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Username, new { @class = "col-md-3 col-form-label" })
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.UserRoles, new { @class = "col-md-3 col-form-label" })
+                                    <div class="col-md-9">
+                                        @Html.DropDownListFor(m => m.UserRoles, (SelectList)ViewBag.UserRoles, "Select Role", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Password, new { @class = "col-md-3 col-form-label" })
+                                    <div class="col-md-9">
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-3 col-form-label" })
+                                    <div class="col-md-9">
+                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-3 col-form-label" })
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.IsDocumentAccess, new { @class = "col-md-3 col-form-label" })
+                                    <div class="col-md-9">
+                                        @Html.CheckBoxFor(m => m.IsDocumentAccess, new { @class = "form-control"})
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-sm btn-primary" type="submit">
+                                    <i class="fa fa-dot-circle-o"></i> Create User
+                                </button>
+                            </div>
+                        </div>
+                    
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+

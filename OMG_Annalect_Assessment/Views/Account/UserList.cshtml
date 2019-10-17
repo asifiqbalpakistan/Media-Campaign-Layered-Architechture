@@ -1,0 +1,103 @@
+﻿@model IEnumerable<OMG_Annalect_DomainModels.RegisterViewModel>
+
+    @{
+        ViewBag.Title = "Users";
+    }
+
+    <div>
+        <div class="animated fadeIn">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-users"></i> @ViewBag.Title
+                    <div class="card-header-actions">
+                        <a class="btn btn-info" href="@Url.Action("CreateUser", "Account")">
+                            <i class="fa fa-user-plus"></i> Add @ViewBag.Title
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-responsive-sm datatable">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>User Name</th>
+                                <th>Email</th>
+                               
+                                <th class="no-sort"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var record in Model)
+                            {
+                            <tr>
+                                <td>@record.FirstName</td>
+                                <td>@record.LastName</td>
+                                <td>@record.Username</td>
+                                <td>@record.Email</td>
+                               
+                                <td>
+                                  
+                                    <a class="btn btn-danger" href="javascript:void(0)" onclick="Delete('@record.Email')">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section scripts
+{
+        <script type="text/javascript">
+        function Delete(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $("#cover-spin").show();
+                    $.ajax({
+                        url: '@Url.Action("DeleteUser", "Account")',
+                        type: 'post',
+                        contentType: 'application/x-www-form-urlencoded',
+                        data: { "id": id },
+                          dataType: "json",
+                        success: function (data, textStatus, jQxhr) {
+                            $("#cover-spin").hide();
+                            Swal.fire({
+                                type: 'success',
+                                title: 'Deleted!',
+                                text: 'Deleted Successfully.'
+                            }).then((result) => {
+                                if (result.value) {
+                                    location.reload();
+                                }
+                            });
+
+                        },
+                        error: function (jqXhr, textStatus, errorThrown) {
+                            $("#cover-spin").hide();
+                            Swal.fire({
+                                type: 'error',
+                                title: 'Some error occured',
+                                text: 'Please try again'
+                            });
+                        }
+                    });
+
+                }
+            })
+        }
+        </script>
+    }

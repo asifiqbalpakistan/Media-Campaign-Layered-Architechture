@@ -1,0 +1,44 @@
+﻿@model OMG_Annalect_DomainModels.ChannelModel
+
+
+@{
+    ViewBag.Title = "Create Channel";
+}
+
+<div>
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                @using (Html.BeginForm())
+                {
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>@ViewBag.Title</strong>
+                        </div>
+                        <div class="card-body">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary("", new { @class = "text-danger" })
+                            <div class="form-group row">
+                                @Html.LabelFor(m => m.Name, new { @class = "col-md-3 col-form-label" })
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-md btn-primary mr-3" type="submit">
+                                <i class="fa fa-dot-circle-o"></i> Create
+                            </button>
+                            <a class="btn btn-md btn-primary ml-3" href="@Url.Action("Index", "Campaign")">
+                                <i class="fa fa-close"></i> Cancel
+                            </a>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
